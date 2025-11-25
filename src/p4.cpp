@@ -13,7 +13,7 @@ int main() {
     int n;
     cin >> n;
     search(n);
-    fib(n);
+    cout << fib(n) << endl;
     
     return 0;
 }
