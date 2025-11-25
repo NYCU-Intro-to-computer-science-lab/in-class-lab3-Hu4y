@@ -2,11 +2,18 @@
 
 #include <iostream>
 using namespace std;
+
 int fib(int n);
 void search(int n);
+void print();
+int step = 0;
+
 int main() {
     
-    search(3);
+    int n;
+    cin >> n;
+    search(n);
+    fib(n);
     
     return 0;
 }
@@ -18,21 +25,26 @@ int fib(int n) {
     return fib(n-1) + fib(n-2);
 }
 
+void print() {
+    for(int i = 0; i < step; i++) {
+        cout << "|--";
+    }
+}
+
 void search(int n) {
-    if(n == 1)
-    cout << "|--";
+    print();
     cout << "SEARCH fib(" << n << ")" << endl;
-    if(n == 2) {
-       cout << "|--";
+    step++;
+    if(n == 2 || n == 1) {
+       step--;
+        print();
        cout << "GET fib(" << n << ") = " << fib(n) << endl;
-       search(1);
        return;
     }
-    if(n == 1) {
-        cout << "|--";
-        cout << "GET fib(" << n << ") = " << fib(n) << endl;
-        return;
-    }
+    else
     search(n - 1);
+    search(n - 2);
+    step--;
+    print();
     cout << "GET fib(" << n << ") = " << fib(n) << endl;
 }
